@@ -1,0 +1,653 @@
+.content{
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    left:50%;
+    bottom: 0;
+    margin-left:-450px;
+    /*background: rgba(255,255,255,0.2);*/
+    /*任意元素居中*/
+    /*transform: translateX(-50%);*/
+}
+.go{
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    z-index: 999;
+}
+.more{
+    position: fixed;
+    bottom:60px;
+    right: 60px;
+    z-index: 999;
+    /*2.调用动画序列*/
+    /*逆播放也会记录在播放次数内*/
+    animation: more 0.4s linear infinite alternate;
+    display: none;
+}
+/*更多容器的动画*/
+/*1.定义一个动画序列*/
+@keyframes more {
+    from{
+        transform: translateY(-10px);
+    }
+    to{
+        transform: translateY(10px);
+    }
+}
+
+
+/*第一屏*/
+.section:nth-child(1){
+    background: url("../images/01-bg.png") no-repeat center bottom;
+}
+.section:nth-child(1) .fly{
+    position: absolute;
+    right: -50px;
+    top: 0;
+    animation: fly-01 0.8s linear infinite alternate;
+}
+.section:nth-child(1) .sofa{
+    position: absolute;
+    left: 180px;
+    top: 140px;
+    animation: sofa-01 0.8s linear infinite alternate;
+}
+.section:nth-child(1) .goods{
+    position: absolute;
+    bottom: 120px;
+    left:50%;
+    margin-left:-412px;
+}
+/*初始化的是就该出现动画*/
+@keyframes sofa-01 {
+    from{
+        transform: translateY(-10px);
+    }
+    to{
+        transform: translateY(10px);
+    }
+}
+@keyframes fly-01 {
+    from{
+        transform: translateY(-20px);
+    }
+    to{
+        transform: translateY(20px);
+    }
+}
+
+.section:nth-child(2){
+    background: url("../images/02-bg.png") no-repeat center bottom;
+}
+.section:nth-child(2) .text{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left:-180px;
+}
+.section:nth-child(2) .text img{
+    position: absolute;
+}
+.section:nth-child(2) .text img:last-child{
+    opacity: 0;
+}
+.section:nth-child(2) .search{
+    position: absolute;
+    right: 170px;
+    top: 120px;
+    /*转换原地*/
+    transform-origin: right top;
+    /*transform: scale(0.7);*/
+    /*transform: translate(-170px,130px);*/
+    /*transform: translate(1000px,130px);*/
+    z-index: 900;
+    opacity: 0;
+}
+.section:nth-child(2) .search img:last-child{
+    position: absolute;
+    left: 100px;
+    top: 3px;
+    opacity: 0;
+}
+.section:nth-child(2) .goods{
+    position: absolute;
+    left:50%;
+    margin-left:-220px;
+    bottom: 208px;
+    transform: scale(0);
+    transform-origin: right bottom;
+}
+.section:nth-child(2) .sofa{
+    position: absolute;
+    top:134px;
+    left: 291px;
+    transform: scale(0.5);
+    opacity: 0;
+    z-index: 900;
+}
+/*第二屏动画*/
+.section:nth-child(2).now .text img:first-child{
+    display: none;
+}
+.section:nth-child(2).now .text img:last-child{
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+.section:nth-child(2).now .search{
+    /*forwards backwards 控制动画播放结束的状态（保持当前状态  回到初始状态）*/
+    animation: search-02 3s linear forwards;
+}
+.section:nth-child(2).now .search img:last-child{
+    opacity: 1;
+    transition: opacity 1s linear 1s;
+}
+.section:nth-child(2).now .goods{
+    transform: scale(1);
+    transition: transform 1s linear 2s;
+}
+@keyframes search-02 {
+    from{
+        transform: translate(1000px,130px);
+        opacity: 1;
+    }
+    33.33%{
+        transform: translate(-170px,130px);
+        opacity: 1;
+    }
+    66.67%{
+        transform: translate(-170px,130px);
+        opacity: 1;
+    }
+    to{
+        transform: scale(0.7);
+        opacity: 1;
+    }
+}
+.section:nth-child(2) .sofa.animated{
+    animation: sofa-02-03 1s linear/* forwards*/;
+}
+@keyframes sofa-02-03 {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 1;
+        transform: translate(-75px,700px);
+    }
+}
+
+
+/*第三屏*/
+.section:nth-child(3){
+    background: url("../images/03-bg.png") no-repeat center bottom;
+}
+.section:nth-child(3) .sofa{
+    position: absolute;
+    left: 210px;
+    top: 195px;
+    opacity: 0;
+    z-index: 900;
+}
+.section:nth-child(3) .change{
+    position: absolute;
+    right: 116px;
+    top: 285px;
+    width: 296px;
+    height: 131px;
+}
+.section:nth-child(3) .change img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.section:nth-child(3) .cart{
+    position: absolute;
+    right: 194px;
+    bottom: 104px;
+    width: 218px;
+    height: 58px;
+}
+.section:nth-child(3) .cart img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.section:nth-child(3).now .sofa{
+    opacity: 1;
+}
+.section:nth-child(3).now .change img:first-child{
+     display: none;
+ }
+.section:nth-child(3).now .change img:last-child{
+    opacity: 1;
+}
+.section:nth-child(3).now .cart img:first-child{
+    display: none;
+}
+.section:nth-child(3).now .cart img:last-child{
+    opacity: 1;
+}
+
+.section:nth-child(3) .sofa.animated{
+    animation: sofa-03-04 1s linear;
+}
+@keyframes sofa-03-04 {
+    from{
+        opacity: 1;
+    }
+    to{
+        transform: translate(200px,650px) rotate(45deg);
+    }
+}
+
+/*第四屏*/
+.section:nth-child(4){
+    background: url("../images/04-bg.png") no-repeat center bottom;
+}
+.section:nth-child(4) .cloud{
+    position: absolute;
+    top: -50px;
+    left: 0;
+    animation: cloud-04 30s linear infinite alternate;
+}
+@keyframes cloud-04 {
+    from{
+        transform: translateX(-50%);
+    }
+    to{
+        transform: translateX(50%);
+    }
+}
+.section:nth-child(4) .address{
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    margin-left:-142px;
+    display: none;
+}
+.section:nth-child(4) .address img:last-child{
+    position: absolute;
+    left: 50%;
+    top: 60px;
+    margin-left:-87px;
+    display: none;
+}
+.section:nth-child(4) .text{
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    width: 429px;
+    height: 31px;
+    margin-left:-210px;
+}
+.section:nth-child(4) .text img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.section:nth-child(4) .cart{
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    margin-left:-204px;
+    z-index: 901;
+}
+.section:nth-child(4) .sofa{
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(420px,200px) rotate(45deg);
+    opacity: 0;
+}
+
+.section:nth-child(4).now .sofa{
+    opacity: 1;
+    animation: sofa-04 2s linear forwards;
+}
+
+/*第四屏动画*/
+.section:nth-child(4).now .cart{
+    animation: cart-04 2s linear forwards;
+}
+@keyframes sofa-04 {
+    from{
+    }
+    to{
+        transform: translate(1420px,200px) rotate(45deg);
+    }
+}
+@keyframes cart-04 {
+    from{
+    }
+    to{
+        transform: translateX(1000px);
+    }
+}
+
+
+/*第五屏*/
+.section:nth-child(5){
+    background: url("../images/05-bg.png");
+}
+.section:nth-child(5) .content{
+    height: 100%;
+}
+.section:nth-child(5) .text{
+    position: absolute;
+    left: 0;
+    bottom: 550px;
+}
+.section:nth-child(5) .card{
+    position: absolute;
+    left: 0;
+    bottom: 200px;
+    z-index: 950;
+}
+.section:nth-child(5) .order{
+    position: absolute;
+    left: 130px;
+    bottom: 370px;
+    z-index: 949;
+    transform: translateY(100px);
+}
+.section:nth-child(5) .sofa{
+    position: absolute;
+    left: 100px;
+    bottom: 60px;
+    z-index: 949;
+    opacity: 0;
+}
+.section:nth-child(5) .mouse{
+    width: 205px;
+    height: 100%;
+    position: absolute;
+    right:0;
+    top: 0;
+    overflow: hidden;
+}
+.section:nth-child(5) .mouse .mouse01{
+    position: absolute;
+    bottom: 240px;
+    left: 10px;
+}
+.section:nth-child(5) .mouse .mouse02{
+    position: absolute;
+    bottom: 240px;
+    left: 10px;
+    opacity: 0;
+}
+.section:nth-child(5) .mouse .hand{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+}
+
+/*第五屏的动画*/
+.section:nth-child(5).now .mouse .hand{
+    transition: all 0.5s linear;
+    transform: none;
+}
+.section:nth-child(5).now .mouse .mouse02{
+    transition: all 0.5s linear 0.5s;
+    opacity: 1;
+}
+.section:nth-child(5).now .sofa{
+    animation: sofa-05 1.6s linear 1s forwards;
+}
+@keyframes sofa-05 {
+    from{
+        transform: translateY(-1000px);
+        opacity: 1;
+    }
+    50%{
+        transform: translateY(-120px);
+    }
+    to{
+        transform: none;
+        opacity: 1;
+    }
+}
+.section:nth-child(5).now .order{
+    transition: all 0.8s linear 1.8s;
+    transform: none;
+}
+.section:nth-child(5) .sofa.animated{
+    animation: sofa-05-06 1.2s linear;
+}
+@keyframes sofa-05-06 {
+    from{
+        opacity: 1;
+    }
+    to{
+        transform: translateY(350px) scale(0.3);
+        opacity: 1;
+    }
+}
+
+/*第六屏*/
+.section:nth-child(6){
+    background: url("../images/06-bg.png") no-repeat 20% bottom;
+}
+.section:nth-child(6) .box{
+    position: absolute;
+    left: 140px;
+    top: 70px;
+    z-index: 950;
+}
+.section:nth-child(6) .box.animated{
+    animation: box-06 2.4s linear forwards;
+}
+@keyframes box-06 {
+    from{
+        transform: translateX(-1000px);
+    }
+    33.33%{
+        transform: none;
+    }
+    66.67% {
+        transform: none;
+    }
+    to{
+        transform: translateY(400px) scale(0.5);
+    }
+}
+.section:nth-child(6) .car{
+    position: absolute;
+    bottom: 0;
+    left:110px;
+    width: 221px;
+    height: 122px;
+    z-index: 951;
+}
+
+
+/*车子开动*/
+.section:nth-child(6).now{
+    transition: all 1.5s linear 1.4s;
+    background-position-x: 100%;
+}
+
+.section:nth-child(6) .car .buyer{
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    opacity: 0;
+}
+.section:nth-child(6) .car .address{
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    opacity: 0;
+}
+.section:nth-child(6).now .car .buyer{
+    transition: all 0.5s linear 1.8s;
+    opacity: 1;
+}
+.section:nth-child(6).now .car .address{
+    transition: all 0.5s linear 2.3s;
+    opacity: 1;
+}
+.section:nth-child(6) .car .worker{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform-origin: left bottom;
+    transform: scale(0);
+}
+/*通过过渡来实现多个节点的动画  前提：属性要求不一样*/
+.section:nth-child(6).now .car .worker{
+    transition: transform 0.5s linear 2.9s,bottom 0.5s linear 3.4s,left 0.5s linear 3.9s;
+    transform: none;
+    bottom: 100px;
+    left: 200px;
+}
+/*说话*/
+.section:nth-child(6) .car .say{
+    position: absolute;
+    right: -260px;
+    top:-420px;
+    opacity: 0;
+}
+.section:nth-child(6).now .car .say{
+    transition: all 0.5s linear 4.4s;
+    opacity: 1;
+}
+
+.section:nth-child(6) .cloud{
+    position: absolute;
+    left: 0;
+    top: -50px;
+}
+.section:nth-child(6) .cloud img:first-child{
+    animation: cloud-04 30s linear infinite alternate;
+}
+.section:nth-child(6) .cloud img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation: cloud-04 80s linear infinite alternate;
+}
+/*文字*/
+.section:nth-child(6) .text{
+    position: absolute;
+    left: 50px;
+    top: 70px;
+}
+.section:nth-child(6) .text img:first-child{}
+.section:nth-child(6) .text img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.section:nth-child(6).now .text img:last-child{
+    transition: all 0.5s linear 4.4s;
+    opacity: 1;
+}
+.section:nth-child(6) .door{
+    width: 106px;
+    height: 150px;
+    position: absolute;
+    right: 284px;
+    bottom: 116px;
+    opacity: 0;
+}
+.section:nth-child(6) .door img:first-child{
+
+}
+.section:nth-child(6) .door img:last-child{
+    position: absolute;
+    right: 0;
+    bottom: -11px;
+    transform: scale(0);
+    transform-origin: right bottom;
+}
+.section:nth-child(6).now .door{
+    opacity: 1;
+    transition: all 0.5s linear 4.9s;
+}
+.section:nth-child(6).now .door img:last-child{
+    transition: transform 0.5s linear 5.4s,right 0.5s linear 5.9s;
+    transform:none;
+    right: 180px;
+}
+
+/*第7屏*/
+.section:nth-child(7){
+    background: url("../images/07-bg.png") no-repeat center bottom;
+}
+.section:nth-child(7) .star{
+    position: absolute;
+    left: 156px;
+    top: 138px;
+}
+.section:nth-child(7) .star img{
+    margin-right:2px;
+    display: none;
+}
+.section:nth-child(7) .text{
+    position: absolute;
+    left: 166px;
+    top: 178px;
+    transform: scale(0);
+    transform-origin: left bottom;
+}
+.section:nth-child(7).now .text{
+    animation: text-07 1s ease 1.4s forwards;
+}
+@keyframes text-07 {
+    from{
+
+    }
+    50%{
+        transform: scale(1.3);
+    }
+    to{
+        transform: none;
+    }
+}
+/*第8屏*/
+.section:nth-child(8){
+    background: url("../images/08-bg.png");
+}
+.section:nth-child(8) .btn{
+    position: absolute;
+    left: 50%;
+    top:0;
+    margin-left:-195px;
+}
+.section:nth-child(8) .btn img:last-child{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.section:nth-child(8) .btn:hover img:last-child{
+    display: block;
+}
+.section:nth-child(8) .again{
+    position: absolute;
+    right: 0;
+    top: 60px;
+}
+.section:nth-child(8) .hand{
+    position: absolute;
+    left: 50%;
+    top:100px;
+    margin-left:-85px;
+}
+
+
+
+
+
+
